@@ -186,6 +186,12 @@ static int http_server_worker(void *arg)
     return 0;
 }
 
+struct task_struct *my_kthread_wrapper(struct socket *socket)
+{
+    // printk(KERN_INFO "my_kthread_wrapper called");
+    return kthread_run(http_server_worker, socket, KBUILD_MODNAME);
+}
+
 int http_server_daemon(void *arg)
 {
     struct socket *socket;
@@ -203,7 +209,8 @@ int http_server_daemon(void *arg)
             pr_err("kernel_accept() error: %d\n", err);
             continue;
         }
-        worker = kthread_run(http_server_worker, socket, KBUILD_MODNAME);
+        worker = my_kthread_wrapper(socket);  // kthread_run(http_server_worker,
+                                              // socket, KBUILD_MODNAME);
         if (IS_ERR(worker)) {
             pr_err("can't create more worker process\n");
             continue;
