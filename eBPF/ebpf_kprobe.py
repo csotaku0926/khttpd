@@ -22,8 +22,8 @@ int BPF_kretprobe(struct pt_regs *ctx)
 """
 
 b = BPF(text=code)
-b.attach_kprobe(event="http_server_worker", fn_name="BPF_kprobe")
-b.attach_kretprobe(event="http_server_worker", fn_name="BPF_kretprobe")
+b.attach_kprobe(event="my_kthread_wrapper", fn_name="BPF_kprobe")
+b.attach_kretprobe(event="my_kthread_wrapper", fn_name="BPF_kretprobe")
 
 while True:
 	res = b.trace_fields()
