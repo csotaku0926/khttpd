@@ -1,1 +1,0 @@
-savedcmd_/home/csotaku/Desktop/linux_kernel/khttpd/Module.symvers :=  scripts/mod/modpost -m -a      -o /home/csotaku/Desktop/linux_kernel/khttpd/Module.symvers -T /home/csotaku/Desktop/linux_kernel/khttpd/modules.order -i Module.symvers -e 

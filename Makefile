@@ -25,7 +25,7 @@ check: all
 
 clean:
 	make -C $(KDIR) M=$(PWD) clean
-	$(RM) htstress
+	$(RM) htstress eBPF/out.* ftrace/trace.txt
 
 # Download http_parser.[ch] from nodejs/http-parser repository
 # the inclusion of standard header files such as <string.h> will be replaced
